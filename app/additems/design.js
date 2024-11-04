@@ -29,10 +29,10 @@ const AddIngredient = ({ onAddItem }) => {
         }}
       >
         <Typography variant="h5" gutterBottom>
-          Add New Ingredient
+          Add your todos
         </Typography>
         <TextField
-          label="Item Name"
+          label="Todo Name"
           variant="outlined"
           fullWidth
           margin="normal"
@@ -40,7 +40,7 @@ const AddIngredient = ({ onAddItem }) => {
           onChange={(e) => setItemName(e.target.value)}
         />
         <TextField
-          label="Description"
+          label=" Time and Description"
           variant="outlined"
           fullWidth
           margin="normal"
@@ -56,7 +56,7 @@ const AddIngredient = ({ onAddItem }) => {
           sx={{ mt: 2 }}
           onClick={handleAddItem}
         >
-          Add Item
+          Add the todo
         </Button>
       </Box>
     </Container>

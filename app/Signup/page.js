@@ -5,12 +5,15 @@ import React, { useState } from 'react';
 import { TextField, Button, Container, Typography, Box } from '@mui/material';
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 import {auth,createUserWithEmailAndPassword} from "../firebase";
+import NextLink from 'next/link'
+import { useRouter } from 'next/navigation';
 
 const SignUpPage = () => {
    const [email,setemail]=useState('');
    const[password,setpassword]=useState('');
    const[confirmPassword,setconfirmedPassword]=useState('');
    const[error,seterror]=useState('');
+   const router = useRouter();
   const handleSubmit = async (event) => {
     event.preventDefault();
     // Handle sign-up logic here
@@ -33,7 +36,8 @@ const SignUpPage = () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-      
+      localStorage.setItem('userid',user.uid);
+      router.push(`/dashboard`)
       setemail('');
       setpassword('');
       setconfirmedPassword('');
@@ -100,6 +104,9 @@ const SignUpPage = () => {
             autoComplete="new-password"
             onChange={(e)=>{setconfirmedPassword(e.target.value)}}
           />
+          <Typography variant="body1" sx={{ marginTop: 2 }}>
+          Already have an account? <NextLink href="/Signin" passHref><Typography component="a" color="primary">Sign In</Typography></NextLink>
+        </Typography>
           <Button
             type="submit"
             fullWidth

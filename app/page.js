@@ -32,10 +32,10 @@ export default function Home() {
     >
       <Container maxWidth="sm" sx={{ backgroundColor: 'white', padding: 4, borderRadius: 2, boxShadow: 3 }}>
         <Typography variant="h2" gutterBottom>
-          Welcome to Your PantryPal
+          Welcome to Your Studybuddy
         </Typography>
         <Typography variant="h5" paragraph>
-          Track your pantry items and manage your recipes with ease.
+        Plan, Prioritize, and Achieve Your Study Goals
         </Typography>
         <Stack direction="row" spacing={2} justifyContent="center">
           <Button

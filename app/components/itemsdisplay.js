@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -30,40 +28,12 @@ export default function OutlinedCard() {
       });
       setInventory(itemsArr);
     }, (error) => {
-      console.error('Error fetching inventory:', error);
+      console.error('Error fetching items:', error);
     });
 
     // Cleanup listener on component unmount
     return () => unsubscribe();
   }, []);
-
-  const incrementButton = async (id) => {
-    try {
-      const itemRef = doc(db, 'users', userid, 'items', id); // Correct path
-      const docSnapshot = await getDoc(itemRef);
-      const quantity = docSnapshot.data()?.quantity || 0;
-
-      await updateDoc(itemRef, { quantity: quantity + 1 });
-    } catch (error) {
-      console.error('Error incrementing quantity:', error);
-    }
-  };
-
-  const decrementButton = async (id) => {
-    try {
-      const itemRef = doc(db, 'users', userid, 'items', id); // Correct path
-      const docSnapshot = await getDoc(itemRef);
-      const quantity = docSnapshot.data()?.quantity || 0;
-
-      if (quantity > 1) {
-        await updateDoc(itemRef, { quantity: quantity - 1 });
-      } else {
-        await deleteDoc(itemRef);
-      }
-    } catch (error) {
-      console.error('Error decrementing quantity:', error);
-    }
-  };
 
   const deleteButton = async (id) => {
     try {
@@ -74,18 +44,30 @@ export default function OutlinedCard() {
     }
   };
 
+  const checkboxbutton = async (id) => {
+    try {
+      const itemRef = doc(db, 'users', userid, 'items', id); // Correct path
+      const docSnapshot = await getDoc(itemRef);
+      const completed = docSnapshot.data()?.completed;
+
+      await updateDoc(itemRef, { completed: !completed }); // Toggle completed
+    } catch (error) {
+      console.error('Error marking todo:', error);
+    }
+  };
+
   return (
     <Box sx={{ minWidth: 275 }}>
       <Grid container spacing={2}>
         {inventory.map((item) => (
-          <Grid item key={item.id}>
+          <Grid item xs={12} key={item.id}> {/* Change this line to use xs={12} */}
             <CustomCard
               title={item.name}
               description={item.description}
-              quantity={item.quantity}
-              onIncrement={() => incrementButton(item.id)}
-              onDecrement={() => decrementButton(item.id)}
+              completed={item.completed} // Pass completed state
+              onCheckboxChange={() => checkboxbutton(item.id)} // Handle checkbox change
               onDelete={() => deleteButton(item.id)}
+              sx={{ width: '100%' }} // Ensure the CustomCard takes full width
             />
           </Grid>
         ))}

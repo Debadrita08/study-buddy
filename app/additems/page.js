@@ -26,11 +26,11 @@ async function additems(itemname, description) {
           await addDoc(itemsCollectionRef, {
               name: itemname,
               description: description,
-              quantity: 1
+              completed:false
           });
       } else {
           // If the item already exists, update its quantity
-          querySnapshot.forEach(async (docSnap) => {
+          /*querySnapshot.forEach(async (docSnap) => {
               const docRef = docSnap.ref;
               const data = docSnap.data();
               
@@ -39,10 +39,12 @@ async function additems(itemname, description) {
                   ...data,
                   quantity: (data.quantity || 0) + 1
               });
-          });
+          });*/
       }
-  } catch (e) {
+ 
+ alert("Your todo "+itemname+" got added")   } catch (e) {
       console.log("Error adding or updating item: ", e);
+      alert("Your todo "+itemname+" did not get added")
   }
 }
 

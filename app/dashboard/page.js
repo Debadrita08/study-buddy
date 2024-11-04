@@ -2,11 +2,12 @@
 
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { Box, Typography,Modal,Stack,TextField,Button,textFieldStyle} from '@mui/material';
+import { Box, Typography, Modal, Stack, TextField, Button } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import SearchAppBar from '../components/appbar';
-import OutlinedCard from '../components/itemsdisplay'
-import {Grid} from '@mui/material';
+import SearchAppBar from '../components/appbarwosearch';
+import OutlinedCard from '../components/itemsdisplay'; // Ensure this imports your card component
+import { Grid } from '@mui/material';
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -20,49 +21,33 @@ const style = {
     display: 'flex',
     flexDirection: 'column',
     gap: 3,
-  }
-  const buttonStyle = {
+};
+
+const buttonStyle = {
     mt: 2,
     backgroundColor: '#6200ea',
     color: 'white',
     '&:hover': {
-      backgroundColor: '#3700b3',
+        backgroundColor: '#3700b3',
     },
-  };
+};
 
 export default function Dashboard() {
-   // const params = new URLSearchParams(window.location.search);
-    /*const [id,setid] = useState('');
-    const[inventory,setinventory]=useState([]);
-    const[itemname,setitemname]=useState('');
-    const[handler,sethandler]=useState(true);
-    useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        const id = params.get('userId');
-        if (id) {
-          setid(id);
-        }
-      }, []);
-      const sethandleropen = ()=>{
-        sethandler(true);
-      }
-      const sethandlerclose = ()=>{
-        sethandler(false);
-      }*/
-
-  return (
-    <Box
-      width="100vw"
-      height="100vh"
-      display="flex"
-      flexDirection="column"
-    >
-      <SearchAppBar />
-      <Box width="100vw" height="100vh" display="flex" flexDirection="row" p={2}>
-      <Grid container spacing={2}> {/* Adjust the spacing value as needed */}
-        <OutlinedCard></OutlinedCard>
-        </Grid>
-    </Box>
-    </Box>
-  );
+    return (
+        <Box
+            width="100vw"
+            height="100vh"
+            display="flex"
+            flexDirection="column"
+        >
+            <SearchAppBar />
+            <Box width="100%" height="100%" display="flex" flexDirection="row" p={2}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12}> {/* Make sure the card takes the full width */}
+                        <OutlinedCard />
+                    </Grid>
+                </Grid>
+            </Box>
+        </Box>
+    );
 }

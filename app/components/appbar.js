@@ -6,6 +6,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import FastfoodIcon from '@mui/icons-material/Fastfood'; // Use FastfoodIcon or any other suitable icon
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+
 import { alpha } from '@mui/material/styles';
 import { useRouter } from 'next/navigation';
 
@@ -69,20 +71,20 @@ export default function SearchAppBar() {
             <ListItemText primary="Dashboard" />
           </ListItemButton >
         </ListItem>
-        <ListItem key="Suggest Recipe" disablePadding>
+        <ListItem key="Chat with your studybuddy" disablePadding>
           <ListItemButton onClick={()=>{router.push("/recipe")}}>
             <ListItemIcon>
-              <FastfoodIcon />
+            <MenuBookIcon />
             </ListItemIcon>
-            <ListItemText primary="Suggest Recipe" />
+            <ListItemText primary="Chat with your studybuddy" />
           </ListItemButton>
         </ListItem>
-        <ListItem key="Add Ingredients" disablePadding>
+        <ListItem key="Add subjects to your schedule" disablePadding>
           <ListItemButton onClick={()=>{router.push("/additems")}}>
             <ListItemIcon>
               <AddCircleIcon />
             </ListItemIcon>
-            <ListItemText primary="Add Ingredients" />
+            <ListItemText primary="Add subjects to your schedule" />
           </ListItemButton>
         </ListItem>
         <ListItem key="Logout" disablePadding>
@@ -120,7 +122,7 @@ export default function SearchAppBar() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            Your PantryPal
+            Your Studybuddy
           </Typography>
           <Search>
             <SearchIconWrapper>
